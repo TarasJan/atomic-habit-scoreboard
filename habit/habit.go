@@ -8,6 +8,19 @@ const (
     Negative = '-'
 )
 
+func (i Impact) String() string {
+    switch(i) {
+        case Positive:
+            return "Positive"
+        case Neutral:
+            return "Neutral"
+        case Negative:
+            return "Negative"
+        default:
+            return "Unknown"
+    }
+}
+
 type Habit struct {
     description string
     impact Impact
@@ -19,6 +32,10 @@ func (h *Habit) Description() string {
 
 func (h *Habit) Impact() Impact {
     return h.impact
+}
+
+func (h *Habit) String() string {
+    return h.Description() + string(h.Impact())
 }
 
 func NewHabit(habitDesc string) *Habit {
