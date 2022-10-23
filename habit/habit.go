@@ -22,27 +22,19 @@ func (i Impact) String() string {
 }
 
 type Habit struct {
-    description string
-    impact Impact
-}
-
-func (h *Habit) Description() string {
-    return h.description
-}
-
-func (h *Habit) Impact() Impact {
-    return h.impact
+    Description string `json:"description"`
+    Impact Impact `json:"impact"`
 }
 
 func (h *Habit) String() string {
-    return h.Description() + string(h.Impact())
+    return h.Description + string(h.Impact)
 }
 
 func NewHabit(habitDesc string) *Habit {
     var impact Impact = Neutral
     habitDescLength := len(habitDesc)
     if habitDescLength == 0 {
-        return &Habit{description: habitDesc, impact: impact}
+        return &Habit{Description: habitDesc, Impact: impact}
     }
 
     desc := habitDesc
@@ -52,5 +44,5 @@ func NewHabit(habitDesc string) *Habit {
             impact = Impact(finalDescRune)
             desc = desc[:habitDescLength - 1]
     }
-    return &Habit{description: desc, impact: impact}
+    return &Habit{Description: desc, Impact: impact}
 }
